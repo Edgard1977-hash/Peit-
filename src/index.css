@@ -35,83 +35,134 @@ html.dark:not(.onboarding-scope) body {
 }
 
 html.dark:not(.onboarding-scope) .bg-\[\#f5f4fa\],
+html.dark:not(.onboarding-scope) .bg-\[\#F8F9FA\],
+html.dark:not(.onboarding-scope) .bg-\[\#f4f5f7\],
 html.dark:not(.onboarding-scope) .app-canvas {
   background-color: #000000 !important;
 }
 
-/* 2. Plaques (Cards / Containers) Gradient: 1C1C1E(Снизу) - 202022(сверху) - без обводки */
+/* 2. Plaques (Cards / Containers) Gradient: 1C1C1E(Снизу) - 202022(сверху) WITHOUT ANY BORDERS */
 .plaque-gradient {
-  background: linear-gradient(180deg, #202022 0%, #1C1C1E 100%);
-}
-
-.plaque-gradient,
-[data-plaque="true"] {
-  border-color: transparent !important;
+  background: linear-gradient(180deg, #202022 0%, #1C1C1E 100%) !important;
 }
 
 html.dark:not(.onboarding-scope) .plaque-gradient,
 html.dark:not(.onboarding-scope) [data-plaque="true"],
-html.dark:not(.onboarding-scope) .bg-white:not(.keep-white):not([data-colored-bg="true"] *):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.bg-red-500 *):not(.bg-green-500 *):not(.bg-blue-600 *):not(.bg-zinc-950 *):not(.bg-black *) {
+html.dark:not(.onboarding-scope) .card-plaque,
+html.dark:not(.onboarding-scope) div.bg-white:not(.keep-white):not([data-colored-bg="true"] *):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.bg-red-500 *):not(.bg-green-500 *):not(.bg-blue-600 *):not(.bg-zinc-950 *):not(.bg-black *):not(button):not(input) {
   background: linear-gradient(180deg, #202022 0%, #1C1C1E 100%) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Убираем обводку из темной темы как запрошено ("убрать обводку из темной темы") */
+html.dark:not(.onboarding-scope) .border:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-2:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-t:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-b:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-l:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-r:not(.keep-border),
+html.dark:not(.onboarding-scope) .border-black\/\[0\.02\],
+html.dark:not(.onboarding-scope) .border-black\/\[0\.03\],
+html.dark:not(.onboarding-scope) .border-black\/\[0\.04\],
+html.dark:not(.onboarding-scope) .border-black\/\[0\.06\],
+html.dark:not(.onboarding-scope) .border-white\/10,
+html.dark:not(.onboarding-scope) .border-white\/20,
+html.dark:not(.onboarding-scope) .border-white\/\[0\.08\],
+html.dark:not(.onboarding-scope) .border-zinc-300,
+html.dark:not(.onboarding-scope) .border-zinc-200,
+html.dark:not(.onboarding-scope) .border-zinc-150,
+html.dark:not(.onboarding-scope) .border-zinc-100 {
   border-color: transparent !important;
 }
 
-/* 3. Черное становится белым (текст, иконки) */
-html.dark:not(.onboarding-scope) .text-\[\#1c1c1e\]:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
-html.dark:not(.onboarding-scope) .text-\[\#18181b\]:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
-html.dark:not(.onboarding-scope) .text-zinc-900:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
-html.dark:not(.onboarding-scope) .text-black:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *) {
+/* 3. "Черное – становится белым, а белое – черным (не считая объектов которые находятся на разноцветных цветах, и также то что будет стоять на черном цвете - оно должно остаться белым если оно было белое)" */
+
+/* Кнопки, которые в светлой теме были черными (bg-black или bg-[#1c1c1e]), на темном фоне становятся белыми с черным текстом */
+html.dark:not(.onboarding-scope) button.bg-black:not(.keep-black-bg):not([data-nav="true"]),
+html.dark:not(.onboarding-scope) button.bg-\[\#1c1c1e\]:not(.keep-black-bg),
+html.dark:not(.onboarding-scope) button.bg-\[\#1C1C1E\]:not(.keep-black-bg),
+html.dark:not(.onboarding-scope) .action-primary-btn {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.dark:not(.onboarding-scope) button.bg-black:not(.keep-black-bg):not([data-nav="true"]) *,
+html.dark:not(.onboarding-scope) button.bg-\[\#1c1c1e\]:not(.keep-black-bg) *,
+html.dark:not(.onboarding-scope) button.bg-\[\#1C1C1E\]:not(.keep-black-bg) * {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Элементы, которые должны оставаться БЕЛЫМИ на темном/черном фоне (табы, активные плашки 0.5x/1x, затвор, и т.д.) */
+.keep-white,
+html.dark:not(.onboarding-scope) .keep-white,
+html.dark:not(.onboarding-scope) .dark\:bg-white,
+html.dark:not(.onboarding-scope) [data-keep-white="true"] {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+/* Текст и иконки на белых элементах остаются черными */
+.keep-white *,
+.keep-black,
+html.dark:not(.onboarding-scope) .keep-white *,
+html.dark:not(.onboarding-scope) .keep-black {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  fill: #000000 !important;
+}
+
+/* Текст и заголовки, которые были темными/черными на светлом, в темной теме становятся белыми */
+html.dark:not(.onboarding-scope) .text-\[\#1c1c1e\]:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-\[\#1C1C1E\]:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-\[\#18181b\]:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-zinc-900:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-zinc-800:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-zinc-700:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-[#374151]:not(.keep-black):not(.keep-white *),
+html.dark:not(.onboarding-scope) .text-black:not(.keep-black):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.keep-white *) {
   color: #ffffff !important;
 }
 
-html.dark:not(.onboarding-scope) .text-zinc-800,
-html.dark:not(.onboarding-scope) .text-zinc-700 {
-  color: #f5f5f7 !important;
+/* Иконки с темными цветами становятся белыми, если они не на белом элементе */
+html.dark:not(.onboarding-scope) svg.text-black:not(.keep-black):not(.keep-white *),
+html.dark:not(.onboarding-scope) svg.text-zinc-900:not(.keep-black):not(.keep-white *),
+html.dark:not(.onboarding-scope) svg.text-\[\#1c1c1e\]:not(.keep-black):not(.keep-white *),
+html.dark:not(.onboarding-scope) svg.text-\[\#1C1C1E\]:not(.keep-black):not(.keep-white *) {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
-/* 4. Серое становится чуть более серым */
+/* 4. "Исправь, чтоб серый был не таким серым"
+   Серый цвет делаем чистым, благородным и разборчивым Apple серым (#98989D / #A1A1A6), а не тусклым и грязным */
 html.dark:not(.onboarding-scope) .text-\[\#8E8E93\],
+html.dark:not(.onboarding-scope) .text-\[\#6e6e78\],
+html.dark:not(.onboarding-scope) .text-\[\#636366\],
+html.dark:not(.onboarding-scope) .text-\[\#6b7280\],
 html.dark:not(.onboarding-scope) .text-zinc-500,
 html.dark:not(.onboarding-scope) .text-zinc-400 {
-  color: #7C7C80 !important; /* Чуть более глубокий темно-серый оттенок */
+  color: #98989D !important;
 }
 
-/* Внутренние плашки/поля ввода становятся чуть более темным серым, без обводки */
+/* Внутренние плашки/поля ввода в темной теме без обводок */
 html.dark:not(.onboarding-scope) .bg-zinc-50:not(.keep-bg),
 html.dark:not(.onboarding-scope) .bg-zinc-100:not(.keep-bg),
 html.dark:not(.onboarding-scope) .bg-\[\#f4f5f7\]:not(.keep-bg),
 html.dark:not(.onboarding-scope) .bg-\[\#F2F2F7\]:not(.keep-bg),
-html.dark:not(.onboarding-scope) .bg-\[\#eaedf0\]:not(.keep-bg) {
+html.dark:not(.onboarding-scope) .bg-\[\#eaedf0\]:not(.keep-bg),
+html.dark:not(.onboarding-scope) .bg-\[\#e5e5eb\]:not(.keep-bg) {
   background-color: #19191B !important;
   border-color: transparent !important;
 }
 
-/* Серые кружки пустых дней в прогрессе становятся чуть более серыми */
-html.dark:not(.onboarding-scope) .bg-\[\#E5E5EA\] {
-  background-color: #2A2A2C !important;
-}
-
-/* Полное удаление обводки плашек (Remove all borders/strokes from plaques & cards) */
-.border-black\/\[0\.02\],
-.border-black\/\[0\.03\],
-.border-black\/\[0\.04\],
-.border-black\/5,
-.border-zinc-200,
-.border-zinc-150,
-.border-zinc-100 {
-  border-color: transparent !important;
-}
-
-html.dark:not(.onboarding-scope) .border-black\/\[0\.02\],
-html.dark:not(.onboarding-scope) .border-black\/\[0\.03\],
-html.dark:not(.onboarding-scope) .border-black\/\[0\.04\],
-html.dark:not(.onboarding-scope) .border-black\/5,
-html.dark:not(.onboarding-scope) .border-zinc-200,
-html.dark:not(.onboarding-scope) .border-zinc-150,
-html.dark:not(.onboarding-scope) .border-zinc-100,
-html.dark:not(.onboarding-scope) .border-white\/\[0\.08\],
-html.dark:not(.onboarding-scope) .border-white\/\[0\.06\],
-html.dark:not(.onboarding-scope) .border-white\/\[0\.04\] {
+/* Серые кружки пустых дней в прогрессе и календаре */
+html.dark:not(.onboarding-scope) .bg-\[\#E5E5EA\],
+html.dark:not(.onboarding-scope) .bg-\[\#e5e5eb\] {
+  background-color: #242426 !important;
   border-color: transparent !important;
 }
 

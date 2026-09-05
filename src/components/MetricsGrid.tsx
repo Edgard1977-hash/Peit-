@@ -979,29 +979,29 @@ export default function MetricsGrid({
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", stiffness: 420, damping: 36 }}
-              className="relative w-full max-w-md mx-auto bg-white rounded-t-[40px] px-6 pt-6 pb-8 shadow-[0_-16px_48px_rgba(0,0,0,0.15)] flex flex-col max-h-[85vh] z-10"
+              className="relative w-full max-w-md mx-auto bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] text-black dark:text-white rounded-t-[40px] px-6 pt-6 pb-8 shadow-[0_-16px_48px_rgba(0,0,0,0.15)] flex flex-col max-h-[85vh] z-10"
               id="reminders-popup"
             >
               {/* Header */}
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-extrabold text-black tracking-tight">{t.Reminders}</h3>
+                <h3 className="text-2xl font-extrabold text-black dark:text-white tracking-tight">{t.Reminders}</h3>
                 <button
                   onClick={() => setShowRemindersSheet(false)}
-                  className="h-8 w-8 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-zinc-200 cursor-pointer transition-colors"
+                  className="h-8 w-8 rounded-full bg-zinc-100 dark:bg-white/10 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/20 cursor-pointer transition-colors"
                 >
-                  <XCircle size={20} className="text-zinc-500 hover:text-zinc-700 transition-colors" />
+                  <XCircle size={20} className="text-zinc-500 dark:text-zinc-300 hover:text-zinc-700 dark:hover:text-white transition-colors" />
                 </button>
               </div>
 
               {/* Reminders List */}
               <div className="flex-1 overflow-y-auto space-y-3 max-h-[350px] pr-1 mb-6">
                 {reminders.length === 0 ? (
-                  <p className="text-xs text-zinc-400 italic text-center py-10">{t.NoReminders}</p>
+                  <p className="text-xs text-zinc-400 dark:text-[#98989D] italic text-center py-10">{t.NoReminders}</p>
                 ) : (
                   reminders.map((rem) => (
                     <div
                       key={rem.id}
-                      className="flex items-center justify-between bg-zinc-50 p-4 rounded-2xl border border-zinc-100/80 hover:border-zinc-200/60 transition-all duration-200"
+                      className="flex items-center justify-between bg-zinc-50 dark:bg-[#19191B] p-4 rounded-2xl border border-zinc-100/80 dark:border-0 hover:border-zinc-200/60 transition-all duration-200"
                     >
                       <div className="flex-1 flex flex-col gap-0.5">
                         {/* Interactive Editable Time */}
@@ -1025,7 +1025,7 @@ export default function MetricsGrid({
                                   setEditingReminderId(null);
                                 }
                               }}
-                              className="text-base font-extrabold text-[#006AFF] bg-white border border-zinc-300 rounded-lg px-2 py-0.5 outline-none focus:ring-2 focus:ring-[#006AFF]/25 max-w-[90px]"
+                              className="text-base font-extrabold text-[#006AFF] bg-white dark:bg-[#202022] border border-zinc-300 dark:border-white/10 rounded-lg px-2 py-0.5 outline-none focus:ring-2 focus:ring-[#006AFF]/25 max-w-[90px]"
                             />
                           ) : (
                             <span
@@ -1038,7 +1038,7 @@ export default function MetricsGrid({
                           )}
                         </div>
                         {/* Task Title */}
-                        <span className="text-xs text-zinc-500 font-semibold tracking-wide mt-1">
+                        <span className="text-xs text-zinc-500 dark:text-[#98989D] font-semibold tracking-wide mt-1">
                           {rem.title}
                         </span>
                       </div>
@@ -1048,7 +1048,7 @@ export default function MetricsGrid({
                         <button
                           onClick={() => onToggleReminder(rem.id)}
                           className={`w-11 h-6 flex items-center rounded-full p-0.5 cursor-pointer transition-colors duration-250 ${
-                            !rem.completed ? "bg-[#34C759]" : "bg-zinc-200"
+                            !rem.completed ? "bg-[#34C759]" : "bg-zinc-200 dark:bg-white/20"
                           }`}
                         >
                           <motion.div
@@ -1061,7 +1061,7 @@ export default function MetricsGrid({
 
                         <button
                           onClick={() => onDeleteReminder(rem.id)}
-                          className="text-zinc-300 hover:text-red-500 transition-colors p-1.5 cursor-pointer"
+                          className="text-zinc-300 dark:text-zinc-500 hover:text-red-500 transition-colors p-1.5 cursor-pointer"
                         >
                           <Trash2 size={15} />
                         </button>
@@ -1080,7 +1080,7 @@ export default function MetricsGrid({
                   setNewReminderTime(`${currentHour}:${currentMin}`);
                   setShowNewReminderModal(true);
                 }}
-                className="w-full bg-[#006AFF]/10 hover:bg-[#006AFF]/15 text-[#006AFF] font-extrabold text-sm py-4 rounded-2xl cursor-pointer transition-colors text-center border border-[#006AFF]/10 flex items-center justify-center gap-2"
+                className="w-full bg-[#006AFF]/10 dark:bg-[#006AFF]/20 hover:bg-[#006AFF]/15 dark:hover:bg-[#006AFF]/30 text-[#006AFF] dark:text-[#5aa0ff] font-extrabold text-sm py-4 rounded-2xl cursor-pointer transition-colors text-center border border-[#006AFF]/10 dark:border-0 flex items-center justify-center gap-2"
               >
                 <Plus size={16} /> {t.AddReminder}
               </button>
@@ -1109,28 +1109,28 @@ export default function MetricsGrid({
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", stiffness: 420, damping: 36 }}
-              className="relative w-full max-w-md mx-auto bg-white rounded-t-[40px] px-6 pt-6 pb-8 shadow-[0_-16px_48px_rgba(0,0,0,0.15)] flex flex-col z-10"
+              className="relative w-full max-w-md mx-auto bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] text-black dark:text-white rounded-t-[40px] px-6 pt-6 pb-8 shadow-[0_-16px_48px_rgba(0,0,0,0.15)] flex flex-col z-10"
               id="new-reminder-popup"
             >
               {/* Header */}
               <div className="flex justify-between items-center mb-5">
-                <h3 className="text-2xl font-extrabold text-black tracking-tight">{t.NewReminder}</h3>
+                <h3 className="text-2xl font-extrabold text-black dark:text-white tracking-tight">{t.NewReminder}</h3>
                 <button
                   onClick={() => setShowNewReminderModal(false)}
-                  className="h-8 w-8 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-zinc-200 cursor-pointer transition-colors"
+                  className="h-8 w-8 rounded-full bg-zinc-100 dark:bg-white/10 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/20 cursor-pointer transition-colors"
                 >
-                  <XCircle size={20} className="text-zinc-500 hover:text-zinc-700 transition-colors" />
+                  <XCircle size={20} className="text-zinc-500 dark:text-zinc-300 hover:text-zinc-700 dark:hover:text-white transition-colors" />
                 </button>
               </div>
 
               {/* Native Apple-like Time Selector */}
-              <div className="flex flex-col items-center justify-center bg-zinc-50 py-4 px-6 rounded-[2rem] border border-zinc-100 mb-4 w-full">
-                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2">{t.ChooseTime}</span>
+              <div className="flex flex-col items-center justify-center bg-zinc-50 dark:bg-[#19191B] py-4 px-6 rounded-[2rem] border border-zinc-100 dark:border-0 mb-4 w-full">
+                <span className="text-[11px] font-bold text-zinc-400 dark:text-[#98989D] uppercase tracking-wider mb-2">{t.ChooseTime}</span>
                 <input
                   type="time"
                   value={newReminderTime}
                   onChange={(e) => setNewReminderTime(e.target.value)}
-                  className="text-2xl font-extrabold text-black bg-white border border-zinc-200 rounded-2xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#006AFF]/20 text-center w-full select-none cursor-pointer"
+                  className="text-2xl font-extrabold text-black dark:text-white bg-white dark:bg-[#202022] border border-zinc-200 dark:border-0 rounded-2xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#006AFF]/20 text-center w-full select-none cursor-pointer"
                 />
               </div>
 
@@ -1154,7 +1154,7 @@ export default function MetricsGrid({
                       className={`transition-all text-xs font-bold px-3.5 py-1.5 rounded-full cursor-pointer ${
                         newReminderTitle === chip.label
                           ? "bg-[#006AFF] text-white"
-                          : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                          : "bg-zinc-100 dark:bg-[#19191B] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-[#242426]"
                       }`}
                     >
                       {chip.icon} {chip.label}
@@ -1172,7 +1172,7 @@ export default function MetricsGrid({
                     placeholder={t.ReminderFor}
                     value={newReminderTitle}
                     onChange={(e) => setNewReminderTitle(e.target.value)}
-                    className="w-full text-sm font-semibold bg-zinc-50 border border-zinc-150 rounded-2xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#006AFF]/25 focus:border-[#006AFF] focus:bg-white transition-all text-zinc-800"
+                    className="w-full text-sm font-semibold bg-zinc-50 dark:bg-[#19191B] border border-zinc-150 dark:border-0 rounded-2xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#006AFF]/25 focus:border-[#006AFF] focus:bg-white dark:focus:bg-[#242426] transition-all text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-[#98989D]"
                   />
                 </div>
 
@@ -1204,43 +1204,43 @@ export default function MetricsGrid({
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="w-full max-w-md bg-white rounded-t-[2.5rem] p-6 shadow-2xl relative z-10 flex flex-col"
+              className="w-full max-w-md bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] text-black dark:text-white rounded-t-[2.5rem] p-6 shadow-2xl relative z-10 flex flex-col"
               id="water-bottom-sheet"
             >
-              <div className="w-12 h-1.5 bg-zinc-200 rounded-full mx-auto mb-4"></div>
+              <div className="w-12 h-1.5 bg-zinc-200 dark:bg-white/20 rounded-full mx-auto mb-4"></div>
               
               <div className="flex justify-between items-center mb-5">
                 <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 bg-blue-50 text-[#5856d6] rounded-xl flex items-center justify-center">
+                  <div className="h-8 w-8 bg-blue-50 dark:bg-[#5856d6]/20 text-[#5856d6] dark:text-[#7d7aff] rounded-xl flex items-center justify-center">
                     <Droplets size={16} />
                   </div>
-                  <h3 className="text-base font-extrabold text-[#1c1c1e]">{t.DrinkingMode} ({pet.name})</h3>
+                  <h3 className="text-base font-extrabold text-[#1c1c1e] dark:text-white">{t.DrinkingMode} ({pet.name})</h3>
                 </div>
                 <button
                   onClick={() => setShowWaterSheet(false)}
-                  className="h-7 w-7 rounded-full bg-zinc-100 flex items-center justify-center hover:bg-zinc-200 cursor-pointer"
+                  className="h-7 w-7 rounded-full bg-zinc-100 dark:bg-white/10 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/20 cursor-pointer"
                 >
-                  <X size={14} className="text-zinc-600" />
+                  <X size={14} className="text-zinc-600 dark:text-white" />
                 </button>
               </div>
 
-              <div className="bg-zinc-50 p-5 rounded-2xl border border-zinc-100 flex flex-col items-center justify-center text-center space-y-2 mb-6">
-                <span className="text-xs text-zinc-400 font-bold uppercase tracking-wider">{t.DrunkToday}</span>
-                <span className="text-4xl font-black text-zinc-800 font-mono">{healthLog.waterIntake} {lang === "ru" ? "мл" : "ml"}</span>
-                <span className="text-[11px] text-zinc-400 font-semibold">{t.TargetGoal}: {healthLog.waterTarget} {lang === "ru" ? "мл" : "ml"}</span>
+              <div className="bg-zinc-50 dark:bg-[#19191B] p-5 rounded-2xl border border-zinc-100 dark:border-0 flex flex-col items-center justify-center text-center space-y-2 mb-6">
+                <span className="text-xs text-zinc-400 dark:text-[#98989D] font-bold uppercase tracking-wider">{t.DrunkToday}</span>
+                <span className="text-4xl font-black text-zinc-800 dark:text-white font-mono">{healthLog.waterIntake} {lang === "ru" ? "мл" : "ml"}</span>
+                <span className="text-[11px] text-zinc-400 dark:text-[#98989D] font-semibold">{t.TargetGoal}: {healthLog.waterTarget} {lang === "ru" ? "мл" : "ml"}</span>
               </div>
 
               {/* Increments buttons */}
               <div className="grid grid-cols-3 gap-3 mb-4">
                 <button
                   onClick={() => adjustWater(50)}
-                  className="bg-zinc-50 hover:bg-zinc-100 border border-zinc-150 py-3 rounded-2xl font-bold text-xs text-[#5856d6] cursor-pointer"
+                  className="bg-zinc-50 dark:bg-[#19191B] hover:bg-zinc-100 dark:hover:bg-[#252528] border border-zinc-150 dark:border-0 py-3 rounded-2xl font-bold text-xs text-[#5856d6] dark:text-[#7d7aff] cursor-pointer"
                 >
                   +50 {lang === "ru" ? "мл" : "ml"}
                 </button>
                 <button
                   onClick={() => adjustWater(100)}
-                  className="bg-zinc-50 hover:bg-zinc-100 border border-zinc-150 py-3 rounded-2xl font-bold text-xs text-[#5856d6] cursor-pointer"
+                  className="bg-zinc-50 dark:bg-[#19191B] hover:bg-zinc-100 dark:hover:bg-[#252528] border border-zinc-150 dark:border-0 py-3 rounded-2xl font-bold text-xs text-[#5856d6] dark:text-[#7d7aff] cursor-pointer"
                 >
                   +100 {lang === "ru" ? "мл" : "ml"}
                 </button>
@@ -1255,13 +1255,13 @@ export default function MetricsGrid({
               <div className="flex gap-2">
                 <button
                   onClick={() => adjustWater(-50)}
-                  className="flex-1 bg-red-50 hover:bg-red-100 text-red-500 py-3 rounded-2xl font-bold text-xs cursor-pointer text-center"
+                  className="flex-1 bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 text-red-500 dark:text-red-400 py-3 rounded-2xl font-bold text-xs cursor-pointer text-center"
                 >
                   {t.ReduceWater}
                 </button>
                 <button
                   onClick={() => setShowWaterSheet(false)}
-                  className="flex-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 py-3 rounded-2xl font-bold text-xs cursor-pointer text-center"
+                  className="flex-1 bg-zinc-100 dark:bg-white/10 hover:bg-zinc-200 dark:hover:bg-white/20 text-zinc-600 dark:text-white py-3 rounded-2xl font-bold text-xs cursor-pointer text-center"
                 >
                   {t.Done}
                 </button>
@@ -1279,20 +1279,20 @@ export default function MetricsGrid({
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 420, damping: 36 }}
-            className="fixed inset-0 bg-[#F8F9FA] z-50 flex flex-col justify-between p-6 overflow-y-auto select-none text-[#1c1c1e]"
+            className="fixed inset-0 bg-[#F8F9FA] dark:bg-black z-50 flex flex-col justify-between p-6 overflow-y-auto select-none text-[#1c1c1e] dark:text-white"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "San Francisco", "Helvetica Neue", sans-serif' }}
           >
             {/* Header */}
             <div className="flex items-center justify-between w-full pt-4 relative">
               <button
                 onClick={() => setShowStreakPage(false)}
-                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[#1C1C1E] shadow-[0_4px_14px_rgba(0,0,0,0.06)] dark:shadow-none border border-black/[0.03] dark:border-0 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-[#242426] active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
                 title={lang === "ru" ? "Закрыть" : "Close"}
               >
-                <X className="w-5 h-5 text-black" strokeWidth={2} />
+                <X className="w-5 h-5 text-black dark:text-white" strokeWidth={2} />
               </button>
               
-              <span className="text-xl font-bold text-[#1c1c1e] tracking-tight absolute inset-x-0 text-center pointer-events-none">
+              <span className="text-xl font-bold text-[#1c1c1e] dark:text-white tracking-tight absolute inset-x-0 text-center pointer-events-none">
                 {t.Streak}
               </span>
               
@@ -1346,10 +1346,10 @@ export default function MetricsGrid({
               
               {/* Title & Guidance note */}
               <div className="mt-6 text-center max-w-sm px-4">
-                <h2 className="text-[28px] font-bold text-[#1c1c1e] tracking-tight leading-tight">
+                <h2 className="text-[28px] font-bold text-[#1c1c1e] dark:text-white tracking-tight leading-tight">
                   {t.DaysStreak}
                 </h2>
-                <p className="text-[14px] font-medium text-zinc-500 mt-2 leading-relaxed">
+                <p className="text-[14px] font-medium text-zinc-500 dark:text-[#98989D] mt-2 leading-relaxed">
                   {lang === "ru" ? "Проверяйте питомца с Pet AI каждый день, чтобы продлить серию" : lang === "fr" ? "Vérifiez votre animal avec Pet AI chaque jour pour prolonger votre série" : lang === "de" ? "Scannen Sie Ihr Haustier täglich mit Pet AI, um Ihre Serie fortzusetzen" : lang === "es" ? "Analiza a tu mascota con Pet AI todos los días para aumentar tu racha" : lang === "it" ? "Controlla il tuo animale con Pet AI ogni giorno per aumentare la tua serie" : lang === "ja" ? "毎日Pet AIでペットをスキャンして継続日数を伸ばしましょう" : lang === "ko" ? "매일 Pet AI로 반려동물을 확인하고 연속 기록을 늘려보세요" : lang === "zh" ? "每天使用 Pet AI 检查宠物，保持您的连续天数" : lang === "pt-BR" ? "Analise seu pet com o Pet AI todos os dias para aumentar sua sequência" : "Check your pet with Pet AI every day to build your streak"}
                 </p>
               </div>
@@ -1361,21 +1361,21 @@ export default function MetricsGrid({
               {/* Two Stats/Milestones Cards Side by Side */}
               <div className="grid grid-cols-2 gap-3.5">
                 {/* Next Milestone Box */}
-                <div className="bg-white rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03]" style={{ fontFamily: "'Geologica', sans-serif" }}>
-                  <span className="text-[30px] font-black text-[#1c1c1e] leading-none">
+                <div className="bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] dark:border-0 shadow-xs dark:shadow-none" style={{ fontFamily: "'Geologica', sans-serif" }}>
+                  <span className="text-[30px] font-black text-[#1c1c1e] dark:text-white leading-none">
                     {lang === "ru" ? "7 дней" : lang === "fr" ? "7 jours" : lang === "de" ? "7 Tage" : lang === "es" ? "7 días" : lang === "it" ? "7 giorni" : lang === "ja" ? "7日間" : lang === "ko" ? "7일" : lang === "zh" ? "7天" : lang === "pt-BR" ? "7 dias" : "7 days"}
                   </span>
-                  <span className="text-xs font-semibold text-zinc-400 mt-1.5 leading-tight">
+                  <span className="text-xs font-semibold text-zinc-400 dark:text-[#98989D] mt-1.5 leading-tight">
                     {lang === "ru" ? "Следующая цель" : lang === "fr" ? "Prochain objectif" : lang === "de" ? "Nächstes Ziel" : lang === "es" ? "Próximo objetivo" : lang === "it" ? "Prossimo traguardo" : lang === "ja" ? "次の目標" : lang === "ko" ? "다음 마일스톤" : lang === "zh" ? "下个里程碑" : lang === "pt-BR" ? "Próximo Marco" : "Next Milestone"}
                   </span>
                 </div>
 
                 {/* Best Streak Box (dynamic) */}
-                <div className="bg-white rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03]" style={{ fontFamily: "'Geologica', sans-serif" }}>
-                  <span className="text-[30px] font-black text-[#1c1c1e] leading-none">
+                <div className="bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] dark:border-0 shadow-xs dark:shadow-none" style={{ fontFamily: "'Geologica', sans-serif" }}>
+                  <span className="text-[30px] font-black text-[#1c1c1e] dark:text-white leading-none">
                     {calculateBestStreak(reportsList)} {lang === "ru" ? "дней" : lang === "fr" ? "jours" : lang === "de" ? "Tage" : lang === "es" ? "días" : lang === "it" ? "giorni" : lang === "ja" ? "日" : lang === "ko" ? "일" : lang === "zh" ? "天" : lang === "pt-BR" ? "dias" : "days"}
                   </span>
-                  <span className="text-xs font-semibold text-zinc-400 mt-1.5 leading-tight">
+                  <span className="text-xs font-semibold text-zinc-400 dark:text-[#98989D] mt-1.5 leading-tight">
                     {lang === "ru" ? "Лучшая серия" : lang === "fr" ? "Meilleure série" : lang === "de" ? "Beste Serie" : lang === "es" ? "Mejor racha" : lang === "it" ? "Miglior serie" : lang === "ja" ? "ベスト継続日数" : lang === "ko" ? "최고 연속 기록" : lang === "zh" ? "最佳连续" : lang === "pt-BR" ? "Melhor Sequência" : "Best Streak"}
                   </span>
                 </div>
@@ -1411,11 +1411,11 @@ export default function MetricsGrid({
                     alert(shareText);
                   }
                 }}
-                className="w-full bg-[#18181B] text-white font-bold text-[16px] py-4 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-zinc-800 active:scale-[0.98] transition-all cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
+                className="w-full bg-[#18181B] dark:bg-white text-white dark:text-black font-bold text-[16px] py-4 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-zinc-800 dark:hover:bg-zinc-200 active:scale-[0.98] transition-all cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-5 h-5 stroke-[2.4px] text-white fill-none"
+                  className="w-5 h-5 stroke-[2.4px] text-white dark:text-black fill-none"
                   stroke="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -1436,20 +1436,20 @@ export default function MetricsGrid({
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 420, damping: 36 }}
-            className="fixed inset-0 bg-[#F8F9FA] z-50 flex flex-col justify-between p-6 overflow-y-auto select-none text-[#1c1c1e]"
+            className="fixed inset-0 bg-[#F8F9FA] dark:bg-black z-50 flex flex-col justify-between p-6 overflow-y-auto select-none text-[#1c1c1e] dark:text-white"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "San Francisco", "Helvetica Neue", sans-serif' }}
           >
             {/* Header */}
             <div className="flex items-center justify-between w-full pt-4 relative">
               <button
                 onClick={() => setShowStatusPage(false)}
-                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[#1C1C1E] shadow-[0_4px_14px_rgba(0,0,0,0.06)] dark:shadow-none border border-black/[0.03] dark:border-0 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-[#242426] active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
                 title={lang === "ru" ? "Закрыть" : "Close"}
               >
-                <X className="w-5 h-5 text-black" strokeWidth={2} />
+                <X className="w-5 h-5 text-black dark:text-white" strokeWidth={2} />
               </button>
               
-              <span className="text-xl font-bold text-[#1c1c1e] tracking-tight absolute inset-x-0 text-center pointer-events-none">
+              <span className="text-xl font-bold text-[#1c1c1e] dark:text-white tracking-tight absolute inset-x-0 text-center pointer-events-none">
                 {t.Status}
               </span>
               
@@ -1460,10 +1460,10 @@ export default function MetricsGrid({
                     : `This level reflects the overall health score of your pet.\n\nCurrent score: ${hasScans ? `${score}%` : "No data"}`;
                   alert(alertMsg);
                 }}
-                className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
+                className="w-12 h-12 rounded-full bg-white dark:bg-[#1C1C1E] shadow-[0_4px_14px_rgba(0,0,0,0.06)] dark:shadow-none border border-black/[0.03] dark:border-0 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-[#242426] active:scale-95 transition-all cursor-pointer flex-shrink-0 z-10"
                 title="Информация"
               >
-                <Info className="w-5 h-5 text-black" strokeWidth={2} />
+                <Info className="w-5 h-5 text-black dark:text-white" strokeWidth={2} />
               </button>
             </div>
 
@@ -1474,6 +1474,7 @@ export default function MetricsGrid({
                   {/* Track circle */}
                   <circle
                     stroke="rgba(0, 0, 0, 0.06)"
+                    className="dark:stroke-white/10"
                     fill="transparent"
                     strokeWidth={16}
                     r={95}
@@ -1500,11 +1501,11 @@ export default function MetricsGrid({
                   className="absolute inset-0 flex flex-col items-center justify-center select-none"
                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "San Francisco", sans-serif' }}
                 >
-                  <span className="text-[96px] font-black leading-none text-[#1c1c1e] tracking-tighter">
+                  <span className="text-[96px] font-black leading-none text-[#1c1c1e] dark:text-white tracking-tighter">
                     {hasScans ? score : "--"}
                   </span>
                   {hasScans && (
-                    <span className="text-xs font-bold text-zinc-400 mt-1 uppercase tracking-widest">
+                    <span className="text-xs font-bold text-zinc-400 dark:text-[#98989D] mt-1 uppercase tracking-widest">
                       score
                     </span>
                   )}
@@ -1513,7 +1514,7 @@ export default function MetricsGrid({
 
               {/* Status Title & Description below the circle */}
               <div className="mt-7 text-center max-w-sm px-4">
-                <h2 className="text-[28px] font-bold text-[#1c1c1e] tracking-tight leading-tight">
+                <h2 className="text-[28px] font-bold text-[#1c1c1e] dark:text-white tracking-tight leading-tight">
                   {(() => {
                     if (!hasScans) return lang === "ru" ? "Ожидание анализа" : "Waiting for scan";
                     if (score >= 90) return lang === "ru" ? "Отличное" : "Excellent";
@@ -1522,7 +1523,7 @@ export default function MetricsGrid({
                     return lang === "ru" ? "Требует внимания" : "Needs Attention";
                   })()}
                 </h2>
-                <p className="text-[14px] font-medium text-zinc-500 mt-2 leading-relaxed">
+                <p className="text-[14px] font-medium text-zinc-500 dark:text-[#98989D] mt-2 leading-relaxed">
                   {(() => {
                     if (!hasScans) {
                       return lang === "ru" 
@@ -1557,21 +1558,21 @@ export default function MetricsGrid({
             <div className="w-full space-y-4 max-w-sm mx-auto">
               <div className="grid grid-cols-2 gap-3.5">
                 {/* Left Card: Days Streak */}
-                <div className="bg-white rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] shadow-xs" style={{ fontFamily: "'Geologica', sans-serif" }}>
-                  <span className="text-[30px] font-black text-[#1c1c1e] leading-none">
+                <div className="bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] dark:border-0 shadow-xs dark:shadow-none" style={{ fontFamily: "'Geologica', sans-serif" }}>
+                  <span className="text-[30px] font-black text-[#1c1c1e] dark:text-white leading-none">
                     {streak}
                   </span>
-                  <span className="text-xs font-semibold text-zinc-400 mt-1.5 leading-tight">
+                  <span className="text-xs font-semibold text-zinc-400 dark:text-[#98989D] mt-1.5 leading-tight">
                     {lang === "ru" ? "Серия дней" : "Days Streak"}
                   </span>
                 </div>
 
                 {/* Right Card: Total Scans */}
-                <div className="bg-white rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] shadow-xs" style={{ fontFamily: "'Geologica', sans-serif" }}>
-                  <span className="text-[30px] font-black text-[#1c1c1e] leading-none">
+                <div className="bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] rounded-[2rem] p-5 flex flex-col items-center justify-center text-center border border-black/[0.03] dark:border-0 shadow-xs dark:shadow-none" style={{ fontFamily: "'Geologica', sans-serif" }}>
+                  <span className="text-[30px] font-black text-[#1c1c1e] dark:text-white leading-none">
                     {reportsList.length}
                   </span>
-                  <span className="text-xs font-semibold text-zinc-400 mt-1.5 leading-tight">
+                  <span className="text-xs font-semibold text-zinc-400 dark:text-[#98989D] mt-1.5 leading-tight">
                     {lang === "ru" ? "Всего анализов" : "Total Scans"}
                   </span>
                 </div>
@@ -1590,11 +1591,11 @@ export default function MetricsGrid({
                     alert(shareText);
                   }
                 }}
-                className="w-full bg-[#18181B] text-white font-bold text-[16px] py-4 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-zinc-800 active:scale-[0.98] transition-all cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
+                className="w-full bg-[#18181B] dark:bg-white text-white dark:text-black font-bold text-[16px] py-4 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-zinc-800 dark:hover:bg-zinc-200 active:scale-[0.98] transition-all cursor-pointer shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-5 h-5 stroke-[2.4px] text-white fill-none"
+                  className="w-5 h-5 stroke-[2.4px] text-white dark:text-black fill-none"
                   stroke="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >

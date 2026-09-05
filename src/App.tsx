@@ -1472,10 +1472,10 @@ export default function App() {
                           variants={cardItemVariants}
                           onClick={() => handleSelectPetType(opt.id)}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[15px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[15px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected 
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <span className="text-[18px] font-semibold text-black select-none">
@@ -1638,10 +1638,10 @@ export default function App() {
                             variants={cardItemVariants}
                             onClick={() => handleSelectPetAge(opt)}
                             whileTap={{ scale: 0.985 }}
-                            className={`w-full py-[13px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                            className={`w-full py-[13px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                               isSelected 
-                                ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                                : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                                ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                                : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                             }`}
                           >
                             <span className="text-[18px] font-semibold text-black select-none">
@@ -1738,10 +1738,10 @@ export default function App() {
                           variants={cardItemVariants}
                           onClick={() => handleSelectPetSex(opt)}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected 
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <span className="text-[18px] font-semibold text-black select-none">
@@ -1838,10 +1838,10 @@ export default function App() {
                           variants={cardItemVariants}
                           onClick={() => handleSelectPetHealthChanges(opt)}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected 
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <span className="text-[18px] font-semibold text-black select-none">
@@ -1978,10 +1978,22 @@ export default function App() {
                       transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
                       className="relative w-full max-w-[270px] sm:max-w-[290px]"
                     >
-                      {/* Photo Mockup frame sliding up smoothly from bottom - borderless */}
-                      <div className="relative w-full rounded-t-[36px] bg-transparent p-0 overflow-hidden shadow-lg">
+                      {/* Outer Phone Frame Contour (matching user reference image outline) */}
+                      <div className="relative w-full rounded-t-[48px] border-t-[5.5px] border-x-[5.5px] border-black bg-[#F6F7F9] p-2.5 pt-3 shadow-xl overflow-hidden">
+                        
+                        {/* Left side button stubs */}
+                        <div className="absolute -left-[5.5px] top-[44px] w-[3px] h-[15px] bg-black rounded-l-sm" />
+                        <div className="absolute -left-[5.5px] top-[70px] w-[3px] h-[24px] bg-black rounded-l-sm" />
+                        <div className="absolute -left-[5.5px] top-[102px] w-[3px] h-[24px] bg-black rounded-l-sm" />
+                        
+                        {/* Right side power button stub */}
+                        <div className="absolute -right-[5.5px] top-[80px] w-[3px] h-[34px] bg-black rounded-r-sm" />
+
+                        {/* Top Dynamic Island notch cutout with taller height and rounded pill shape */}
+                        <div className="w-[70px] h-[20px] bg-black rounded-full mx-auto mb-3 flex items-center justify-center shrink-0 z-10" />
+
                         {/* Inner 3:4 realistic pet photo container with rounded corners and scanner frame brackets */}
-                        <div className="relative aspect-[3/4] w-full rounded-[30px] overflow-hidden bg-zinc-100">
+                        <div className="relative aspect-[3/4] w-full rounded-[30px] overflow-hidden bg-zinc-100 border border-black/5 shadow-inner">
                           <img
                             src={activePetPhoto}
                             alt="Pet casual snapshot"
@@ -2060,10 +2072,10 @@ export default function App() {
                           variants={cardItemVariants}
                           onClick={() => handleSelectPetWorryChanges(opt)}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected 
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <span className="text-[18px] font-semibold text-black select-none">
@@ -2355,10 +2367,10 @@ export default function App() {
                             }
                           }}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[14px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected 
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.06)]" 
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]" 
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <span className="text-[18px] font-semibold text-black select-none">
@@ -2451,10 +2463,10 @@ export default function App() {
                             }
                           }}
                           whileTap={{ scale: 0.985 }}
-                          className={`w-full py-[15px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer ${
+                          className={`w-full py-[15px] px-6 rounded-[25px] bg-white text-left flex items-center justify-between transition-colors duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer border-[2px] ${
                             isSelected
-                              ? "shadow-[0_6px_18px_rgba(0,0,0,0.05)]"
-                              : "shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
+                              ? "border-black shadow-[0_6px_18px_rgba(0,0,0,0.05)]"
+                              : "border-transparent shadow-[0_3px_10px_rgba(0,0,0,0.02)]"
                           }`}
                         >
                           <div className="flex items-center gap-3.5 min-w-0">
@@ -2765,8 +2777,8 @@ export default function App() {
                             key={dayItem.id}
                             className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all select-none pointer-events-none ${
                               isSelected
-                                ? "bg-black text-white font-bold text-[15px] shadow-xs"
-                                : "bg-zinc-100/90 text-zinc-400 font-semibold text-[15px]"
+                                ? "bg-white border-[1.5px] border-black text-black font-bold text-[15px] shadow-2xs"
+                                : "bg-zinc-100/90 text-zinc-300 font-semibold text-[15px] border-none"
                             }`}
                           >
                             {dayItem.label}

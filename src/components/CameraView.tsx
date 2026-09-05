@@ -263,7 +263,7 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-[60] flex flex-col items-center justify-between font-sans select-none overflow-hidden py-4">
+    <div className="fixed inset-0 bg-black text-white z-[60] flex flex-col items-center justify-between font-sans select-none overflow-hidden py-4">
       {/* Hidden File Input for Gallery */}
       <input
         type="file"
@@ -278,10 +278,10 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
         {/* Back / Exit Button */}
         <button
           onClick={onClose}
-          className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer flex-shrink-0"
+          className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-white flex items-center justify-center active:scale-95 transition-all cursor-pointer flex-shrink-0"
           title="Назад"
         >
-          <X className="w-5 h-5 text-black" strokeWidth={2} />
+          <X className="w-5 h-5 text-white" strokeWidth={2} />
         </button>
 
         {/* Center spacer */}
@@ -291,7 +291,7 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
         {capturedPhotos.length > 0 ? (
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="w-12 h-12 rounded-full border border-zinc-100 shadow-[0_4px_14px_rgba(0,0,0,0.06)] overflow-hidden relative flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
+            className="w-12 h-12 rounded-full border border-white/20 bg-black shadow-[0_4px_14px_rgba(0,0,0,0.4)] overflow-hidden relative flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
             title="Просмотр фото"
           >
             <img
@@ -301,7 +301,7 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
               className="w-full h-full object-cover"
             />
             {capturedPhotos.length > 1 && (
-              <div className="absolute -bottom-1 -right-1 bg-black text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-90">
+              <div className="absolute -bottom-1 -right-1 bg-white text-black text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-black scale-90">
                 {capturedPhotos.length}
               </div>
             )}
@@ -311,10 +311,10 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
         )}
       </div>
 
-      {/* Central Viewfinder Container wrapped in clean white background */}
+      {/* Central Viewfinder Container */}
       <div className="w-full max-w-md flex-1 flex items-center justify-center px-3 py-4">
         <div 
-          className="relative w-full aspect-[3/4] bg-zinc-950 rounded-[48px] overflow-hidden transition-all duration-300"
+          className="relative w-full aspect-[3/4] bg-black rounded-[44px] overflow-hidden transition-all duration-300"
         >
           {/* Live Video, Connecting Loader, or Falling Back View */}
           {hasPermission === true ? (
@@ -330,30 +330,30 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
             />
           ) : hasPermission === null ? (
             /* Minimal clean loader while connecting */
-            <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-950 text-white">
-              <Loader2 className="w-6 h-6 text-white/30 animate-spin mb-3" />
-              <span className="text-white/40 text-xs font-semibold tracking-wide">Подключение...</span>
+            <div className="w-full h-full flex flex-col items-center justify-center bg-black text-white">
+              <Loader2 className="w-6 h-6 text-white/40 animate-spin mb-3" />
+              <span className="text-[#98989D] text-xs font-semibold tracking-wide">Подключение...</span>
             </div>
           ) : (
             /* Immersive simulated feed if camera not authorized or not available */
-            <div className="w-full h-full flex flex-col items-center justify-between p-6 relative overflow-hidden bg-zinc-950 text-white">
+            <div className="w-full h-full flex flex-col items-center justify-between p-6 relative overflow-hidden bg-black text-white">
               {/* Top status */}
               <div className="w-full text-center mt-4">
-                <span className="text-white/40 text-[10px] uppercase tracking-widest font-mono block mb-1">
+                <span className="text-[#98989D] text-[10px] uppercase tracking-widest font-mono block mb-1">
                   Анализатор питомца
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-red-500/10 text-red-400">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-red-500/20 text-red-400">
                   Доступ заблокирован браузером
                 </span>
               </div>
 
-              {/* Ultra-minimal Pet Image (No grids, borders, outlines, or scanning effects) with smooth zoom transition */}
-              <div className="relative flex items-center justify-center overflow-hidden w-40 h-40 rounded-full bg-zinc-900 border border-white/5">
+              {/* Minimal Pet Image with smooth zoom transition */}
+              <div className="relative flex items-center justify-center overflow-hidden w-40 h-40 rounded-full bg-[#1C1C1E]">
                 <img
                   src={pet.image}
                   alt={pet.name}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover opacity-80 transition-transform duration-300 ease-out origin-center"
+                  className="w-full h-full object-cover opacity-85 transition-transform duration-300 ease-out origin-center"
                   style={{
                     transform: zoom === "0.5" ? "scale(1)" : "scale(1.5)",
                   }}
@@ -370,7 +370,7 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
                     href={window.location.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-[#183BA7] hover:bg-[#153494] text-white text-center py-2.5 rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
+                    className="w-full bg-[#007AFF] hover:bg-[#0062CC] text-white text-center py-2.5 rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
                   >
                     <span>Открыть в отдельной вкладке ↗</span>
                   </a>
@@ -396,23 +396,23 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
 
           {/* Quick Capture loader */}
           {isCapturing && (
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-xs z-30 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-xs z-30 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-white animate-spin" />
             </div>
           )}
 
           {/* Zoom Toggles (0.5x and 1x) - Connected tabs style inside viewfinder bottom */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/30 backdrop-blur-md p-1 rounded-full flex gap-1 z-20 select-none">
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md p-1 rounded-full flex gap-1 z-20 select-none">
             <button
               onClick={() => setZoom("0.5")}
               className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 cursor-pointer ${
-                zoom === "0.5" ? "text-black font-bold" : "text-white/90 hover:text-white"
+                zoom === "0.5" ? "keep-black text-black font-bold" : "text-[#98989D] hover:text-white"
               }`}
             >
               {zoom === "0.5" && (
                 <motion.div
                   layoutId="activeZoomPill"
-                  className="absolute inset-0 bg-white rounded-full -z-10"
+                  className="absolute inset-0 bg-white keep-white rounded-full -z-10 shadow-sm"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -421,13 +421,13 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
             <button
               onClick={() => setZoom("1")}
               className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 cursor-pointer ${
-                zoom === "1" ? "text-black font-bold" : "text-white/90 hover:text-white"
+                zoom === "1" ? "keep-black text-black font-bold" : "text-[#98989D] hover:text-white"
               }`}
             >
               {zoom === "1" && (
                 <motion.div
                   layoutId="activeZoomPill"
-                  className="absolute inset-0 bg-white rounded-full -z-10"
+                  className="absolute inset-0 bg-white keep-white rounded-full -z-10 shadow-sm"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -437,38 +437,40 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
         </div>
       </div>
 
-      {/* Bottom Controls Area in pure White Background (Flat, no separating shadows or borders) */}
-      <div className="w-full max-w-md bg-white pb-12 pt-2 px-8 flex flex-col items-center gap-6 z-10">
-        {/* Shutter, Gallery, Flash row with exact matching layout */}
+      {/* Bottom Controls Area in Pure Black */}
+      <div className="w-full max-w-md bg-black pb-12 pt-2 px-8 flex flex-col items-center gap-6 z-10 text-white">
+        {/* Shutter, Gallery, Flash row */}
         <div className="w-full flex justify-between items-center px-4">
-          {/* Left: Flash toggle button (Styled exactly like top buttons) */}
+          {/* Left: Flash toggle button */}
           <button
             onClick={() => setFlash(!flash)}
-            className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer"
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 flex items-center justify-center active:scale-95 transition-all cursor-pointer text-white"
             title={flash ? "Выключить вспышку" : "Включить вспышку"}
           >
             {flash ? (
-              <Zap className="w-5 h-5 text-black" strokeWidth={2} />
+              <Zap className="w-5 h-5 text-amber-400 fill-amber-400" strokeWidth={2} />
             ) : (
-              <ZapOff className="w-5 h-5 text-black" strokeWidth={2} />
+              <ZapOff className="w-5 h-5 text-white" strokeWidth={2} />
             )}
           </button>
 
-          {/* Middle: Shutter button - flat white circle with a bold black border and elegant shadow */}
+          {/* Middle: Apple Camera Shutter button - outer ring with inner solid white circle */}
           <button
             onClick={handleShutterClick}
             disabled={isCapturing}
-            className="w-20 h-20 rounded-full bg-white border-[6px] border-black shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:scale-105 active:scale-95 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center"
+            className="w-20 h-20 rounded-full border-4 border-white p-1 flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
             title="Сделать снимок"
-          />
+          >
+            <div className="w-full h-full rounded-full bg-white keep-white transition-all active:scale-90" />
+          </button>
 
-          {/* Right: Gallery button (Styled exactly like top buttons) */}
+          {/* Right: Gallery button */}
           <button
             onClick={handleGalleryClick}
-            className="w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all cursor-pointer"
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 flex items-center justify-center active:scale-95 transition-all cursor-pointer text-white"
             title="Выбрать из галереи"
           >
-            <Image className="w-5 h-5 text-black" strokeWidth={2} />
+            <Image className="w-5 h-5 text-white" strokeWidth={2} />
           </button>
         </div>
       </div>
@@ -483,11 +485,11 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="absolute inset-0 bg-black/60"
+              className="absolute inset-0 bg-black/75"
               onClick={() => setIsPopupOpen(false)}
             />
             
-            {/* Highly tactile, fully responsive, spring-loaded drag-to-dismiss sheet */}
+            {/* Spring-loaded drag-to-dismiss sheet */}
             <motion.div
               drag="y"
               dragConstraints={{ top: 0, bottom: 0 }}
@@ -501,10 +503,10 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", stiffness: 420, damping: 36 }}
-              className="relative w-full max-w-md mx-auto bg-white rounded-t-[64px] px-6 pt-18 pb-8 shadow-[0_-16px_48px_rgba(0,0,0,0.22)] flex flex-col items-center gap-4 z-10 select-none touch-none"
+              className="relative w-full max-w-md mx-auto bg-[#1C1C1E] text-white rounded-t-[44px] px-6 pt-16 pb-8 shadow-2xl flex flex-col items-center gap-4 z-10 select-none touch-none"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Delete Photo Button in top-left of the popup styled like the circular close button with plenty of space */}
+              {/* Delete Photo Button in top-left of the popup */}
               <button
                 onClick={() => {
                   setCapturedPhotos(prev => {
@@ -515,14 +517,14 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
                     return next;
                   });
                 }}
-                className="absolute top-5 left-6 w-12 h-12 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] border border-black/[0.03] flex items-center justify-center hover:bg-red-50 hover:text-red-600 active:scale-95 transition-all cursor-pointer text-red-500 z-20"
+                className="absolute top-5 left-6 w-12 h-12 rounded-full bg-white/10 hover:bg-red-500/20 active:scale-95 transition-all cursor-pointer text-red-400 flex items-center justify-center z-20"
                 title="Удалить фото"
               >
-                <Trash2 className="w-5 h-5 text-red-500" strokeWidth={2} />
+                <Trash2 className="w-5 h-5 text-red-400" strokeWidth={2} />
               </button>
 
-              {/* Photo Preview Container matching 100% of the camera viewfinder aspect ratio & style, completely unconstrained */}
-              <div className="relative w-full aspect-[3/4] rounded-[48px] overflow-hidden shadow-md border border-zinc-100">
+              {/* Photo Preview Container */}
+              <div className="relative w-full aspect-[3/4] rounded-[36px] overflow-hidden shadow-md">
                 <img
                   src={capturedPhotos[capturedPhotos.length - 1]}
                   alt="Captured Preview"
@@ -536,10 +538,10 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
                 {/* "Take more" Button */}
                 <button
                   onClick={() => setIsPopupOpen(false)}
-                  className={`flex-1 py-[18px] text-base font-extrabold tracking-wide rounded-[2rem] transition-all active:scale-95 cursor-pointer select-none text-center ${
+                  className={`flex-1 py-[16px] text-base font-bold tracking-wide rounded-full transition-all active:scale-95 cursor-pointer select-none text-center ${
                     capturedPhotos.length < 5
-                      ? "bg-black text-white hover:bg-zinc-900 shadow-md border border-transparent"
-                      : "bg-white border border-zinc-300 text-black hover:bg-zinc-50"
+                      ? "bg-white keep-white text-black keep-black hover:bg-zinc-200"
+                      : "bg-white/15 text-white hover:bg-white/25"
                   }`}
                 >
                   Take more
@@ -548,10 +550,10 @@ export default function CameraView({ pet, onClose, onCapture }: CameraViewProps)
                 {/* "Continue" Button */}
                 <button
                   onClick={handleContinue}
-                  className={`flex-1 py-[18px] text-base font-extrabold tracking-wide rounded-[2rem] transition-all active:scale-95 cursor-pointer select-none text-center ${
+                  className={`flex-1 py-[16px] text-base font-bold tracking-wide rounded-full transition-all active:scale-95 cursor-pointer select-none text-center ${
                     capturedPhotos.length >= 5
-                      ? "bg-black text-white hover:bg-zinc-900 shadow-md border border-transparent"
-                      : "bg-white border border-zinc-300 text-black hover:bg-zinc-50"
+                      ? "bg-white keep-white text-black keep-black hover:bg-zinc-200"
+                      : "bg-white/15 text-white hover:bg-white/25"
                   }`}
                 >
                   Continue

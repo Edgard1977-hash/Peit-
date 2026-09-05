@@ -101,8 +101,8 @@ export default function CalendarSlider({
               key={item.dateStr}
               className={`flex flex-col items-center justify-center py-2 px-1 transition-all h-[70px] w-full rounded-2xl select-none cursor-default ${
                 isToday
-                  ? "bg-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-black/[0.04]"
-                  : "bg-[#e5e5eb] border border-black/[0.03]"
+                  ? "bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] shadow-[0_4px_16px_rgba(0,0,0,0.06)] dark:shadow-none border border-black/[0.04] dark:border-0"
+                  : "bg-[#e5e5eb] dark:bg-[#19191B] border border-black/[0.03] dark:border-0"
               }`}
               id={`calendar-day-${item.dayNum}`}
             >
@@ -110,8 +110,8 @@ export default function CalendarSlider({
               <span
                 className={`text-[12.5px] font-bold tracking-tight mb-1.5 uppercase ${
                   isToday
-                    ? "text-black"
-                    : "text-[#6e6e78]"
+                    ? "text-black dark:text-white"
+                    : "text-[#6e6e78] dark:text-[#98989D]"
                 }`}
               >
                 {item.dayName}
@@ -120,15 +120,15 @@ export default function CalendarSlider({
               {/* Status Display: Checkmark if completed, X if past missed, Clock if pending/future */}
               <div className="h-6 w-6 flex items-center justify-center">
                 {isCompleted ? (
-                  <Check className="w-5 h-5 text-emerald-700 stroke-[2.8]" />
+                  <Check className="w-5 h-5 text-emerald-500 stroke-[2.8]" />
                 ) : isPast ? (
-                  <X className="w-5 h-5 text-rose-600 stroke-[2.8]" />
+                  <X className="w-5 h-5 text-rose-500 stroke-[2.8]" />
                 ) : (
                   <Clock
                     className={`w-[19px] h-[19px] ${
                       isToday
-                        ? "text-zinc-500"
-                        : "text-[#6e6e78]"
+                        ? "text-zinc-500 dark:text-[#98989D]"
+                        : "text-[#6e6e78] dark:text-[#98989D]"
                     }`}
                     strokeWidth={2.3}
                   />

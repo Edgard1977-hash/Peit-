@@ -108,7 +108,7 @@ export default function AppleActionSheet({
             }}
           >
             {/* Primary Action Group (Frosted Glass Container) */}
-            <div className="bg-white/85 backdrop-blur-2xl backdrop-saturate-150 rounded-[14px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] border border-white/60 divide-y divide-black/[0.08]">
+            <div className="bg-white/85 dark:bg-[#1C1C1E]/90 backdrop-blur-2xl backdrop-saturate-150 rounded-[14px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] border border-white/60 dark:border-0 divide-y divide-black/[0.08] dark:divide-white/10">
               {/* Option 1: Add Pet */}
               <button
                 id="apple-sheet-add-pet"
@@ -116,7 +116,7 @@ export default function AppleActionSheet({
                   onClose();
                   onAddPet();
                 }}
-                className="w-full px-5 py-4 flex items-center justify-between text-left text-[17px] tracking-tight font-medium text-[#007AFF] hover:bg-black/[0.04] active:bg-black/[0.08] transition-colors cursor-pointer"
+                className="w-full px-5 py-4 flex items-center justify-between text-left text-[17px] tracking-tight font-medium text-[#007AFF] hover:bg-black/[0.04] dark:hover:bg-white/[0.06] active:bg-black/[0.08] dark:active:bg-white/[0.1] transition-colors cursor-pointer"
               >
                 <span>{t.addPet}</span>
                 <Plus className="w-5 h-5 text-[#007AFF] stroke-[2.4]" />
@@ -129,7 +129,7 @@ export default function AppleActionSheet({
                   onClose();
                   onCheckPet();
                 }}
-                className="w-full px-5 py-4 flex items-center justify-between text-left text-[17px] tracking-tight font-medium text-[#007AFF] hover:bg-black/[0.04] active:bg-black/[0.08] transition-colors cursor-pointer"
+                className="w-full px-5 py-4 flex items-center justify-between text-left text-[17px] tracking-tight font-medium text-[#007AFF] hover:bg-black/[0.04] dark:hover:bg-white/[0.06] active:bg-black/[0.08] dark:active:bg-white/[0.1] transition-colors cursor-pointer"
               >
                 <span>{t.checkPet}</span>
                 <Camera className="w-5 h-5 text-[#007AFF] stroke-[2.2]" />
@@ -137,11 +137,11 @@ export default function AppleActionSheet({
             </div>
 
             {/* Cancel Button (Separate Floating Card in true iOS style) */}
-            <div className="bg-white/95 backdrop-blur-2xl rounded-[14px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] border border-white/60">
+            <div className="bg-white/95 dark:bg-[#1C1C1E]/95 backdrop-blur-2xl rounded-[14px] overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.18)] border border-white/60 dark:border-0">
               <button
                 id="apple-sheet-cancel"
                 onClick={onClose}
-                className="w-full py-4 text-center text-[17px] tracking-tight font-bold text-[#007AFF] hover:bg-black/[0.04] active:bg-black/[0.08] transition-colors cursor-pointer"
+                className="w-full py-4 text-center text-[17px] tracking-tight font-bold text-[#007AFF] hover:bg-black/[0.04] dark:hover:bg-white/[0.06] active:bg-black/[0.08] dark:active:bg-white/[0.1] transition-colors cursor-pointer"
               >
                 {t.cancel}
               </button>

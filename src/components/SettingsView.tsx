@@ -203,7 +203,7 @@ export default function SettingsView({
           View
         </span>
 
-        {/* 3 Plaques in a row: 1. System, 2. Dark, 3. Light - borderless */}
+        {/* 3 Plaques in a row: 1. System, 2. Dark, 3. Light */}
         <div className="grid grid-cols-3 gap-3 w-full">
           {/* 1. System Plaque */}
           <button
@@ -211,8 +211,8 @@ export default function SettingsView({
             onClick={() => handleSelectTheme("system")}
             className={`rounded-[22px] p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-200 select-none min-h-[102px] bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] ${
               themeMode === "system"
-                ? "bg-zinc-100/90 dark:!bg-[#28282B] shadow-sm scale-[1.02]"
-                : "hover:scale-[1.01]"
+                ? "border-2 border-[#1C1C1E] dark:border-white shadow-sm scale-[1.02]"
+                : "border border-black/[0.04] dark:border-white/[0.08] hover:scale-[1.01]"
             }`}
           >
             <div
@@ -241,8 +241,8 @@ export default function SettingsView({
             onClick={() => handleSelectTheme("dark")}
             className={`rounded-[22px] p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-200 select-none min-h-[102px] bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] ${
               themeMode === "dark"
-                ? "bg-zinc-100/90 dark:!bg-[#28282B] shadow-sm scale-[1.02]"
-                : "hover:scale-[1.01]"
+                ? "border-2 border-[#1C1C1E] dark:border-white shadow-sm scale-[1.02]"
+                : "border border-black/[0.04] dark:border-white/[0.08] hover:scale-[1.01]"
             }`}
           >
             <div
@@ -271,8 +271,8 @@ export default function SettingsView({
             onClick={() => handleSelectTheme("light")}
             className={`rounded-[22px] p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-200 select-none min-h-[102px] bg-white dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] ${
               themeMode === "light"
-                ? "bg-zinc-100/90 dark:!bg-[#28282B] shadow-sm scale-[1.02]"
-                : "hover:scale-[1.01]"
+                ? "border-2 border-[#1C1C1E] dark:border-white shadow-sm scale-[1.02]"
+                : "border border-black/[0.04] dark:border-white/[0.08] hover:scale-[1.01]"
             }`}
           >
             <div

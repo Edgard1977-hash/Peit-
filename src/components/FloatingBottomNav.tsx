@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "motion/react";
+import React from "react";
+import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 
 export type NavTabId = "home" | "groups" | "progress" | "settings";
@@ -103,189 +103,55 @@ const TABS: { id: NavTabId; label: string; icon: React.ComponentType<SoftIconPro
   { id: "settings", label: "Settings", icon: SoftSettingsIcon },
 ];
 
-interface TabItemProps {
-  tab: { id: NavTabId; label: string; icon: React.ComponentType<SoftIconProps> };
-  index: number;
-  tabWidth: number;
-  isActive: boolean;
-  currentX: MotionValue<number>;
-  onSelect: () => void;
-}
-
-const TabItem: React.FC<TabItemProps> = ({
-  tab,
-  index,
-  tabWidth,
-  isActive,
-  currentX,
-  onSelect,
-}) => {
-  const tabCenter = index * tabWidth;
-  
-  // Snappy, crisp color transition for light theme
-  const iconColor = useTransform(
-    currentX,
-    [tabCenter - tabWidth * 0.45, tabCenter, tabCenter + tabWidth * 0.45],
-    ["#71717A", "#FFFFFF", "#71717A"]
-  );
-
-  const IconComponent = tab.icon;
-
-  return (
-    <button
-      id={`nav-tab-${tab.id}`}
-      type="button"
-      onClick={onSelect}
-      className="relative z-10 w-[64px] h-[52px] rounded-full flex items-center justify-center cursor-pointer select-none focus:outline-none"
-    >
-      <motion.div
-        animate={{
-          scale: isActive ? 1.06 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 700,
-          damping: 30,
-        }}
-        style={{ color: iconColor }}
-        className="flex items-center justify-center"
-      >
-        <IconComponent
-          filled={isActive}
-          className="w-[23px] h-[23px]"
-        />
-      </motion.div>
-    </button>
-  );
-};
-
 export default function FloatingBottomNav({ activeTab, onChangeTab, onAddClick }: FloatingBottomNavProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [tabWidth, setTabWidth] = useState(64);
-  const isDraggingRef = useRef(false);
-  const startXRef = useRef(0);
-
-  const activeIndex = TABS.findIndex((t) => t.id === activeTab);
-  
-  // Base raw position
-  const pillX = useMotionValue(activeIndex * tabWidth);
-  // Ultra-responsive high-stiffness spring for snappy motion
-  const springX = useSpring(pillX, { stiffness: 600, damping: 35, mass: 0.75 });
-
-  // Update when active tab or tab width changes
-  useEffect(() => {
-    if (!isDraggingRef.current) {
-      pillX.set(activeIndex * tabWidth);
-    }
-  }, [activeIndex, tabWidth, pillX]);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const firstBtn = containerRef.current.querySelector("button");
-      if (firstBtn && firstBtn.offsetWidth > 0) {
-        setTabWidth(firstBtn.offsetWidth);
-      }
-    }
-  }, []);
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0 && e.pointerType === "mouse") return;
-    
-    isDraggingRef.current = false;
-    startXRef.current = e.clientX;
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    
-    const deltaX = e.clientX - startXRef.current;
-    if (Math.abs(deltaX) > 4) {
-      isDraggingRef.current = true;
-    }
-
-    if (isDraggingRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const padding = 8;
-      const rawX = e.clientX - rect.left - padding - tabWidth / 2;
-      const maxX = (TABS.length - 1) * tabWidth;
-      const clampedX = Math.max(0, Math.min(maxX, rawX));
-      
-      pillX.set(clampedX);
-
-      // Smoothly switch active tab as finger passes midway
-      const nearestIndex = Math.round(clampedX / tabWidth);
-      const targetTab = TABS[nearestIndex]?.id;
-      if (targetTab && targetTab !== activeTab) {
-        onChangeTab(targetTab);
-      }
-    }
-  };
-
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    try {
-      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-    } catch {
-      // ignore
-    }
-
-    if (isDraggingRef.current) {
-      pillX.set(activeIndex * tabWidth);
-    }
-    isDraggingRef.current = false;
-  };
-
-  const handleTabSelect = (tabId: NavTabId) => {
-    onChangeTab(tabId);
-    const newIdx = TABS.findIndex((t) => t.id === tabId);
-    if (newIdx !== -1) {
-      pillX.set(newIdx * tabWidth);
-    }
-  };
-
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-md px-4 flex items-center justify-between pointer-events-none z-40 select-none">
-      {/* Left-aligned floating navigation pill with Liquid Glass effect */}
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-md px-5 flex items-center justify-between pointer-events-none z-40 select-none">
+      {/* Navigation tabs pill matching 0.5x / 1x camera connected tabs style */}
       <div
-        ref={containerRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        className="pointer-events-auto bg-white/60 dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] backdrop-blur-2xl backdrop-saturate-150 border border-white/75 dark:border-white/[0.08] p-2 rounded-full flex items-center shadow-[inset_0_1.5px_2px_0_rgba(255,255,255,0.9),inset_0_-1px_1px_0_rgba(0,0,0,0.04),0_16px_36px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_16px_36px_rgba(0,0,0,0.6)] relative cursor-pointer touch-none"
+        className="pointer-events-auto bg-black/5 dark:bg-black/60 backdrop-blur-md p-1 rounded-full flex gap-1 items-center select-none shadow-[0_4px_16px_rgba(0,0,0,0.06)] dark:shadow-none border border-black/[0.04] dark:border-0"
       >
-        {/* Continuous Interactive Sliding Dark Pill */}
-        <motion.div
-          style={{ 
-            x: springX, 
-            width: tabWidth 
-          }}
-          className="absolute top-2 bottom-2 left-2 bg-[#18181B] dark:bg-[#2C2C2E] rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.22),inset_0_1px_1px_rgba(255,255,255,0.2)] dark:shadow-[0_4px_14px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] pointer-events-none z-0"
-        />
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab.id;
+          const IconComponent = tab.icon;
 
-        {TABS.map((tab, idx) => (
-          <TabItem
-            key={tab.id}
-            tab={tab}
-            index={idx}
-            tabWidth={tabWidth}
-            isActive={activeTab === tab.id}
-            currentX={springX}
-            onSelect={() => handleTabSelect(tab.id)}
-          />
-        ))}
+          return (
+            <button
+              key={tab.id}
+              id={`nav-tab-${tab.id}`}
+              type="button"
+              onClick={() => onChangeTab(tab.id)}
+              className={`relative px-4 py-2.5 rounded-full flex items-center justify-center cursor-pointer select-none transition-colors duration-200 ${
+                isActive
+                  ? "text-white dark:text-black dark:keep-black font-bold"
+                  : "text-[#8E8E93] hover:text-black dark:text-[#98989D] dark:hover:text-white"
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="activeNavTabPill"
+                  className="absolute inset-0 bg-black dark:bg-white dark:keep-white rounded-full -z-10 shadow-sm"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <IconComponent
+                filled={isActive}
+                className="w-[22px] h-[22px]"
+              />
+            </button>
+          );
+        })}
       </div>
 
-      {/* Right-aligned larger round plus button with matching Liquid Glass effect */}
+      {/* Matching right circular plus button */}
       <motion.button
         id="bottom-nav-plus-btn"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.92 }}
         onClick={onAddClick}
-        className="pointer-events-auto w-16 h-16 rounded-full bg-white/60 dark:bg-gradient-to-b dark:from-[#202022] dark:to-[#1C1C1E] backdrop-blur-2xl backdrop-saturate-150 border border-white/75 dark:border-white/[0.08] shadow-[inset_0_1.5px_2px_0_rgba(255,255,255,0.9),inset_0_-1px_1px_0_rgba(0,0,0,0.04),0_16px_36px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_16px_36px_rgba(0,0,0,0.6)] flex items-center justify-center text-zinc-900 dark:text-white hover:text-black dark:hover:text-white hover:bg-white/75 dark:hover:from-[#242426] dark:hover:to-[#1F1F21] active:bg-white/85 transition-all cursor-pointer flex-shrink-0"
+        className="pointer-events-auto w-12 h-12 rounded-full bg-black/5 dark:bg-black/60 backdrop-blur-md border border-black/[0.04] dark:border-0 shadow-[0_4px_16px_rgba(0,0,0,0.06)] dark:shadow-none flex items-center justify-center text-black dark:text-white hover:bg-black/10 dark:hover:bg-black/80 active:scale-95 transition-all cursor-pointer flex-shrink-0"
         aria-label="Add"
       >
-        <Plus className="w-7 h-7 stroke-[2.4]" />
+        <Plus className="w-6 h-6 stroke-[2.4]" />
       </motion.button>
     </div>
   );
