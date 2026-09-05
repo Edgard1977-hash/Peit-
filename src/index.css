@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-geologica: "Geologica", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f5f4fa;
+  color: #1c1c1e; /* Classic iOS dark gray text */
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Onboarding scope isolation: initial screens NEVER change with theme */
+html.onboarding-scope,
+html.onboarding-scope body,
+html.onboarding-scope * {
+  color-scheme: light !important;
+}
+
+/* 1. Main Background: Pure black everywhere (#000000) */
+html.dark:not(.onboarding-scope) body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.dark:not(.onboarding-scope) .bg-\[\#f5f4fa\],
+html.dark:not(.onboarding-scope) .app-canvas {
+  background-color: #000000 !important;
+}
+
+/* 2. Plaques (Cards / Containers) Gradient: 1C1C1E(Снизу) - 202022(сверху) - без обводки */
+.plaque-gradient {
+  background: linear-gradient(180deg, #202022 0%, #1C1C1E 100%);
+}
+
+.plaque-gradient,
+[data-plaque="true"] {
+  border-color: transparent !important;
+}
+
+html.dark:not(.onboarding-scope) .plaque-gradient,
+html.dark:not(.onboarding-scope) [data-plaque="true"],
+html.dark:not(.onboarding-scope) .bg-white:not(.keep-white):not([data-colored-bg="true"] *):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *):not(.bg-red-500 *):not(.bg-green-500 *):not(.bg-blue-600 *):not(.bg-zinc-950 *):not(.bg-black *) {
+  background: linear-gradient(180deg, #202022 0%, #1C1C1E 100%) !important;
+  border-color: transparent !important;
+}
+
+/* 3. Черное становится белым (текст, иконки) */
+html.dark:not(.onboarding-scope) .text-\[\#1c1c1e\]:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
+html.dark:not(.onboarding-scope) .text-\[\#18181b\]:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
+html.dark:not(.onboarding-scope) .text-zinc-900:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *),
+html.dark:not(.onboarding-scope) .text-black:not(.keep-color):not(.bg-\[\#183BA7\] *):not(.bg-\[\#006AFF\] *):not(.bg-\[\#007AFF\] *) {
+  color: #ffffff !important;
+}
+
+html.dark:not(.onboarding-scope) .text-zinc-800,
+html.dark:not(.onboarding-scope) .text-zinc-700 {
+  color: #f5f5f7 !important;
+}
+
+/* 4. Серое становится чуть более серым */
+html.dark:not(.onboarding-scope) .text-\[\#8E8E93\],
+html.dark:not(.onboarding-scope) .text-zinc-500,
+html.dark:not(.onboarding-scope) .text-zinc-400 {
+  color: #7C7C80 !important; /* Чуть более глубокий темно-серый оттенок */
+}
+
+/* Внутренние плашки/поля ввода становятся чуть более темным серым, без обводки */
+html.dark:not(.onboarding-scope) .bg-zinc-50:not(.keep-bg),
+html.dark:not(.onboarding-scope) .bg-zinc-100:not(.keep-bg),
+html.dark:not(.onboarding-scope) .bg-\[\#f4f5f7\]:not(.keep-bg),
+html.dark:not(.onboarding-scope) .bg-\[\#F2F2F7\]:not(.keep-bg),
+html.dark:not(.onboarding-scope) .bg-\[\#eaedf0\]:not(.keep-bg) {
+  background-color: #19191B !important;
+  border-color: transparent !important;
+}
+
+/* Серые кружки пустых дней в прогрессе становятся чуть более серыми */
+html.dark:not(.onboarding-scope) .bg-\[\#E5E5EA\] {
+  background-color: #2A2A2C !important;
+}
+
+/* Полное удаление обводки плашек (Remove all borders/strokes from plaques & cards) */
+.border-black\/\[0\.02\],
+.border-black\/\[0\.03\],
+.border-black\/\[0\.04\],
+.border-black\/5,
+.border-zinc-200,
+.border-zinc-150,
+.border-zinc-100 {
+  border-color: transparent !important;
+}
+
+html.dark:not(.onboarding-scope) .border-black\/\[0\.02\],
+html.dark:not(.onboarding-scope) .border-black\/\[0\.03\],
+html.dark:not(.onboarding-scope) .border-black\/\[0\.04\],
+html.dark:not(.onboarding-scope) .border-black\/5,
+html.dark:not(.onboarding-scope) .border-zinc-200,
+html.dark:not(.onboarding-scope) .border-zinc-150,
+html.dark:not(.onboarding-scope) .border-zinc-100,
+html.dark:not(.onboarding-scope) .border-white\/\[0\.08\],
+html.dark:not(.onboarding-scope) .border-white\/\[0\.06\],
+html.dark:not(.onboarding-scope) .border-white\/\[0\.04\] {
+  border-color: transparent !important;
+}
+
+/* Smooth custom scrollbars for interactive panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d1d6;
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3a3a3c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c7c7cc;
+}
+
